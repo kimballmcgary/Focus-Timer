@@ -1,63 +1,43 @@
-/* Apply a full-screen background image */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
     background: url('kimballmcgary_minimalist_office_space_for_one_white_boards_pl_4d1f84f1-9d3a-4f94-a36a-99c3aa45b1c3_2.png') no-repeat center center fixed;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Container for the timer */
-.container {
-    background: rgba(255, 255, 255, 0.8); /* Subtle white overlay for readability */
-    padding: 30px;
-    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    color: white;
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Timer box elements */
-.timer-box h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+.timer-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.timer-box h2 {
-    font-size: 18px;
-    color: #555;
+h1, h2 {
+    margin-bottom: 10px;
 }
 
-/* Quote section */
-#quote {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-/* Timer display */
 #timer {
-    font-size: 48px;
+    font-size: 60px;
     font-weight: bold;
-    color: #222;
+    margin: 20px 0;
 }
 
-/* Buttons */
 .buttons button {
-    background: #4CAF50;
+    background: #2E7D32;
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 12px 18px;
+    margin: 8px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .buttons button:hover {
-    background: #45a049;
+    background: #1B5E20;
 }

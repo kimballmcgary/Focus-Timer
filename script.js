@@ -1,15 +1,24 @@
-let timeLeft = 60 * 60; // 60 minutes
+let workDuration = 60 * 60; // 60 minutes
+let breakDuration = 15 * 60; // 15 minutes
+let sessionCount = 0;
+let totalSessions = 4; // 4 work sessions
+let isWorkSession = true;
+let timeLeft;
 let timerInterval;
 let isRunning = false;
-const sessions = ["Work", "Break"];
-let currentSessionIndex = 0;
 
+const sessionName = document.getElementById("session-name");
+const timerDisplay = document.getElementById("timer");
+const chime = document.getElementById("chime");
+
+// Function to update the timer display
 function updateDisplay() {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
-    document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    timerDisplay.innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
 
+// Function to start the timer
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -18,33 +27,70 @@ function startTimer() {
                 timeLeft--;
                 updateDisplay();
             } else {
-                document.getElementById("chime").play();
+                chime.play();
                 clearInterval(timerInterval);
                 isRunning = false;
-                skipSession();
+                handleSessionCompletion();
             }
         }, 1000);
     }
 }
 
+// Function to pause the timer
 function pauseTimer() {
     clearInterval(timerInterval);
     isRunning = false;
 }
 
+// Function to reset the timer
 function resetTimer() {
     clearInterval(timerInterval);
     isRunning = false;
-    timeLeft = 60 * 60;
+    sessionCount = 0;
+    isWorkSession = true;
+    timeLeft = workDuration;
+    sessionName.innerText = "Current Session: Work";
     updateDisplay();
 }
 
+// Function to skip to the next session
 function skipSession() {
-    currentSessionIndex = (currentSessionIndex + 1) % sessions.length;
-    document.getElementById("session-name").innerText = "Current Session: " + sessions[currentSessionIndex];
-    timeLeft = currentSessionIndex === 0 ? 60 * 60 : 15 * 60; // Work: 60 min, Break: 15 min
-    updateDisplay();
+    clearInterval(timerInterval);
+    isRunning = false;
+    handleSessionCompletion();
 }
 
-// Initialize display
-updateDisplay();
+// Function to handle session switching
+function handleSessionCompletion() {
+    if (isWorkSession) {
+        sessionCount++;
+        if (sessionCount >= totalSessions) {
+            sessionName.innerText = "Day Complete!";
+            timeLeft = 0;
+            updateDisplay();
+            return;
+        }
+        isWorkSession = false;
+        sessionName.innerText = "Current Session: Break";
+        timeLeft = breakDuration;
+    } else {
+        isWorkSession = true;
+        sessionName.innerText = "Current Session: Work";
+        timeLeft = workDuration;
+    }
+    updateDisplay();
+    startTimer();
+}
+
+// Function to start the full day
+function startDay() {
+    sessionCount = 0;
+    isWorkSession = true;
+    sessionName.innerText = "Current Session: Work";
+    timeLeft = workDuration;
+    updateDisplay();
+    startTimer();
+}
+
+// Initialize the display
+resetTimer();

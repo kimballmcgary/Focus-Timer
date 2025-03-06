@@ -1,6 +1,7 @@
 let timer;
-let timeLeft = 3600;
+let timeLeft;
 let sessionIndex = 0;
+let isPaused = false;
 
 const sessions = [
     { name: "Deep Work", duration: 3600 },
@@ -28,6 +29,8 @@ function startNextSession() {
 
 function startTimer() {
     clearInterval(timer);
+    isPaused = false;
+    document.getElementById("pause-play").innerText = "Pause"; // Update button text
     timer = setInterval(() => {
         if (timeLeft > 0) {
             timeLeft--;
@@ -39,17 +42,22 @@ function startTimer() {
     }, 1000);
 }
 
-function pauseTimer() {
-    clearInterval(timer);
+function pauseOrPlayTimer() {
+    if (isPaused) {
+        startTimer();
+    } else {
+        clearInterval(timer);
+        isPaused = true;
+        document.getElementById("pause-play").innerText = "Play";
+    }
 }
 
-function resetTimer() {
-    clearInterval(timer);
-    timeLeft = sessions[sessionIndex - 1].duration; // Resets current session
+function resetCurrentSession() {
+    timeLeft = sessions[sessionIndex - 1].duration; // Reset to original time
     updateTimerDisplay();
 }
 
-function skipTimer() {
+function skipSession() {
     clearInterval(timer);
     startNextSession();
 }
@@ -59,10 +67,3 @@ function updateTimerDisplay() {
     const seconds = timeLeft % 60;
     document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
-
-// Attach event listeners
-document.getElementById("start-day").addEventListener("click", startFullSessionCycle);
-document.getElementById("start").addEventListener("click", startTimer);
-document.getElementById("pause").addEventListener("click", pauseTimer);
-document.getElementById("reset").addEventListener("click", resetTimer);
-document.getElementById("skip").addEventListener("click", skipTimer);

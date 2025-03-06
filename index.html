@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session Timer</title>
+    <title>Focus Timer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Session Timer</h1>
-        <h2 id="session-name">Current Session: Work</h2>
-        <div id="timer">60:00</div>
-        <div class="controls">
-            <button onclick="startDay()">Start Day</button>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="pauseTimer()">Pause</button>
-            <button onclick="resetTimer()">Reset</button>
-            <button onclick="skipSession()">Skip</button>
+        <div class="timer-box">
+            <h1>Session Timer</h1>
+            <h2 id="session-name">Current Session: Work</h2>
+            <p id="quote">"Focus is the key to unlocking potential."</p>
+            <h1 id="timer">60:00</h1>
+            <div class="buttons">
+                <button onclick="startFullSessionCycle()">Start Day</button>
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+                <button onclick="skipSession()">Skip</button>
+            </div>
         </div>
     </div>
-    <audio id="chime" src="https://www.soundjay.com/button/beep-07.wav"></audio>
     <script src="script.js"></script>
 </body>
 </html>

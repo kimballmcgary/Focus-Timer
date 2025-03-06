@@ -82,12 +82,12 @@ function handleSessionCompletion() {
     startTimer();
 }
 
-// Function to start the full day
+// Function to start the full day (Fixes issue)
 function startDay() {
     sessionCount = 0;
     isWorkSession = true;
-    sessionName.innerText = "Current Session: Work";
     timeLeft = workDuration;
+    sessionName.innerText = "Current Session: Work";
     updateDisplay();
     startTimer();
 }

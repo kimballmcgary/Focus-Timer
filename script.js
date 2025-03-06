@@ -108,16 +108,3 @@ document.getElementById("skip-btn").addEventListener("click", skipSession);
 
 // Run quote function on page load
 window.onload = setDailyQuote;
-#timer {
-    font-size: 80px;
-    font-weight: bold;
-    text-align: center;
-    color: white !important;  /* Ensures text is always white */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); /* Adds a soft glow for readability */
-}
-
-#timer small {
-    font-size: 20px;
-    display: block;
-    color: white !important;  /* Ensures labels (Hour, Minute, Second) are also white */
-}

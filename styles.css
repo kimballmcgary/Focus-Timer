@@ -59,3 +59,14 @@ button:hover {
     display: block;
     color: white !important;  /* Ensures labels (Hour, Minute, Second) are also white */
 }
+#timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adds space between hour, minute, and second */
+}
+
+.timer-section {
+    text-align: center;
+    min-width: 80px; /* Ensures consistent spacing */
+}

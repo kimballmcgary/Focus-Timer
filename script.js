@@ -39,8 +39,30 @@ function startTimer() {
     }, 1000);
 }
 
+function pauseTimer() {
+    clearInterval(timer);
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    timeLeft = sessions[sessionIndex - 1].duration; // Resets current session
+    updateTimerDisplay();
+}
+
+function skipTimer() {
+    clearInterval(timer);
+    startNextSession();
+}
+
 function updateTimerDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
     document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
+
+// Attach event listeners
+document.getElementById("start-day").addEventListener("click", startFullSessionCycle);
+document.getElementById("start").addEventListener("click", startTimer);
+document.getElementById("pause").addEventListener("click", pauseTimer);
+document.getElementById("reset").addEventListener("click", resetTimer);
+document.getElementById("skip").addEventListener("click", skipTimer);

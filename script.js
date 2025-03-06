@@ -94,7 +94,10 @@ function skipSession() {
 function updateTimerDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
-    document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    document.getElementById("hours").innerText = String(Math.floor(timeLeft / 3600)).padStart(2, '0');
+document.getElementById("minutes").innerText = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
+document.getElementById("seconds").innerText = String(timeLeft % 60).padStart(2, '0');
+
 }
 
 // Event listeners
@@ -105,3 +108,15 @@ document.getElementById("skip-btn").addEventListener("click", skipSession);
 
 // Run quote function on page load
 window.onload = setDailyQuote;
+#timer {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+#timer small {
+    font-size: 20px;
+    display: block;
+}

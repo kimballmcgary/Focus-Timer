@@ -63,10 +63,18 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Adds space between hour, minute, and second */
+    gap: 20px;
+    font-size: 3rem; /* Adjust size */
+    font-weight: bold;
 }
 
 .timer-section {
-    text-align: center;
-    min-width: 80px; /* Ensures consistent spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4rem; /* Make the numbers larger */
+}
+
+.timer-section div {
+    font-size: 1.5rem; /* Adjust label size (Hours, Minutes, Seconds) */
 }

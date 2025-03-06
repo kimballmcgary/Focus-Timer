@@ -9,16 +9,17 @@
 <body>
     <div class="container">
         <h1>Session Timer</h1>
-        <p id="session-name">Current Session: Work</p>
+        <h2 id="session-name">Current Session: Work</h2>
         <div id="timer">60:00</div>
         <div class="controls">
+            <button onclick="startDay()">Start Day</button>
             <button onclick="startTimer()">Start</button>
             <button onclick="pauseTimer()">Pause</button>
             <button onclick="resetTimer()">Reset</button>
             <button onclick="skipSession()">Skip</button>
         </div>
     </div>
-    <audio id="chime" src="https://www.fesliyanstudios.com/play-mp3/4386"></audio>
+    <audio id="chime" src="https://www.soundjay.com/button/beep-07.wav"></audio>
     <script src="script.js"></script>
 </body>
 </html>

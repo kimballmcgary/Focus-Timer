@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    max-width: 400px;
+    max-width: 800px;
 }
 
 h1, h2, p {
@@ -47,7 +47,7 @@ button:hover {
     background: #45a049;
 }
 #timer {
-    font-size: 80px;
+    font-size: 120px;
     font-weight: bold;
     text-align: center;
     color: white !important;  /* Ensures text is always white */

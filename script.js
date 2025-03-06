@@ -82,42 +82,14 @@ function handleSessionCompletion() {
     startTimer();
 }
 
-// **Fix for Start Day** - Runs all 4 sessions automatically
+// **NEW FIXED FUNCTION: Starts the full session cycle immediately**
 function startDay() {
     sessionCount = 0;
     isWorkSession = true;
     timeLeft = workDuration;
     sessionName.innerText = "Current Session: Work";
     updateDisplay();
-    startFullSessionCycle();
-}
-
-// **NEW FUNCTION: Handles Full Work/Break Cycle Automatically**
-function startFullSessionCycle() {
-    if (sessionCount >= totalSessions) {
-        sessionName.innerText = "Day Complete!";
-        return;
-    }
-
-    timeLeft = isWorkSession ? workDuration : breakDuration;
-    sessionName.innerText = isWorkSession ? "Current Session: Work" : "Current Session: Break";
-    updateDisplay();
-
-    timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateDisplay();
-        } else {
-            chime.play();
-            clearInterval(timerInterval);
-            isRunning = false;
-            isWorkSession = !isWorkSession; // Switch Work/Break
-            if (!isWorkSession) {
-                sessionCount++;
-            }
-            startFullSessionCycle(); // Start next session
-        }
-    }, 1000);
+    startTimer(); // Ensures the timer starts immediately
 }
 
 // Initialize the display

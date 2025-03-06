@@ -112,11 +112,12 @@ window.onload = setDailyQuote;
     font-size: 80px;
     font-weight: bold;
     text-align: center;
-    color: white;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    color: white !important;  /* Ensures text is always white */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); /* Adds a soft glow for readability */
 }
 
 #timer small {
     font-size: 20px;
     display: block;
+    color: white !important;  /* Ensures labels (Hour, Minute, Second) are also white */
 }

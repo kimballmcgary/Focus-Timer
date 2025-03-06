@@ -12,10 +12,9 @@ const sessions = [
 
 const quotes = [
     "The secret to getting ahead is getting started. – Mark Twain",
-    "Focus is the key to unlocking potential. – Unknown",
     "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
     "The successful warrior is the average man, with laser-like focus. – Bruce Lee",
-    "You will never always be motivated, so you must learn to be disciplined. – Unknown",
+    "You will never always be motivated, so you must learn to be disciplined. – Kimball McGary",
     "Do what you can, with what you have, where you are. – Theodore Roosevelt",
     "Lost time is never found again. – Benjamin Franklin",
     "It’s not that I’m so smart, it’s just that I stay with problems longer. – Albert Einstein",

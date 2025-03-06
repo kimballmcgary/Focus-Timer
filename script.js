@@ -1,96 +1,46 @@
-let workDuration = 60 * 60; // 60 minutes
-let breakDuration = 15 * 60; // 15 minutes
-let sessionCount = 0;
-let totalSessions = 4; // 4 work sessions
-let isWorkSession = true;
-let timeLeft;
-let timerInterval;
-let isRunning = false;
+let timer;
+let timeLeft = 3600;
+let sessionIndex = 0;
 
-const sessionName = document.getElementById("session-name");
-const timerDisplay = document.getElementById("timer");
-const chime = document.getElementById("chime");
+const sessions = [
+    { name: "Deep Work", duration: 3600 },
+    { name: "Break", duration: 900 },
+    { name: "Creative Session", duration: 3600 },
+    { name: "Admin Work", duration: 1800 }
+];
 
-// Function to update the timer display
-function updateDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    timerDisplay.innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+function startFullSessionCycle() {
+    sessionIndex = 0;
+    startNextSession();
 }
 
-// Function to start the timer
-function startTimer() {
-    if (!isRunning) {
-        isRunning = true;
-        timerInterval = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                updateDisplay();
-            } else {
-                chime.play();
-                clearInterval(timerInterval);
-                isRunning = false;
-                handleSessionCompletion();
-            }
-        }, 1000);
-    }
-}
-
-// Function to pause the timer
-function pauseTimer() {
-    clearInterval(timerInterval);
-    isRunning = false;
-}
-
-// Function to reset the timer
-function resetTimer() {
-    clearInterval(timerInterval);
-    isRunning = false;
-    sessionCount = 0;
-    isWorkSession = true;
-    timeLeft = workDuration;
-    sessionName.innerText = "Current Session: Work";
-    updateDisplay();
-}
-
-// Function to skip to the next session
-function skipSession() {
-    clearInterval(timerInterval);
-    isRunning = false;
-    handleSessionCompletion();
-}
-
-// Function to handle session switching
-function handleSessionCompletion() {
-    if (isWorkSession) {
-        sessionCount++;
-        if (sessionCount >= totalSessions) {
-            sessionName.innerText = "Day Complete!";
-            timeLeft = 0;
-            updateDisplay();
-            return;
-        }
-        isWorkSession = false;
-        sessionName.innerText = "Current Session: Break";
-        timeLeft = breakDuration;
+function startNextSession() {
+    if (sessionIndex < sessions.length) {
+        document.getElementById("session-name").innerText = `Current Session: ${sessions[sessionIndex].name}`;
+        timeLeft = sessions[sessionIndex].duration;
+        updateTimerDisplay();
+        startTimer();
+        sessionIndex++;
     } else {
-        isWorkSession = true;
-        sessionName.innerText = "Current Session: Work";
-        timeLeft = workDuration;
+        alert("All sessions completed for the day!");
     }
-    updateDisplay();
-    startTimer();
 }
 
-// **NEW FIXED FUNCTION: Starts the full session cycle immediately**
-function startDay() {
-    sessionCount = 0;
-    isWorkSession = true;
-    timeLeft = workDuration;
-    sessionName.innerText = "Current Session: Work";
-    updateDisplay();
-    startTimer(); // Ensures the timer starts immediately
+function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+        } else {
+            clearInterval(timer);
+            startNextSession();
+        }
+    }, 1000);
 }
 
-// Initialize the display
-resetTimer();
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}

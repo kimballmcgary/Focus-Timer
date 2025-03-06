@@ -8,20 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="timer-box">
-           <h2 id="session-name">Current Session: Work</h2>
-<p id="quote" style="font-style: italic;"></p> <!-- This is where the quote will appear -->
-            <p id="quote"></p>
-<h1 id="timer">60:00</h1>
-
-            <h1 id="timer">60:00</h1>
-            <div class="buttons">
-               <button onclick="startFullSessionCycle()">Start Day</button>
-<button onclick="pauseOrPlayTimer()" id="pause-play">Pause</button>
-<button onclick="resetCurrentSession()">Reset Session</button>
-<button onclick="skipSession()">Skip</button>
-
-            </div>
+        <h1>Current Session: <span id="session-name">Deep Work</span></h1>
+        <p id="quote">Loading daily quote...</p> <!-- ✅ Ensure this is here for quotes -->
+        <h2 id="timer">60:00</h2>
+        <div class="buttons">
+            <button id="start-day-btn">Start Day</button>
+            <button id="pause-btn">Pause</button>
+            <button id="reset-btn">Reset Session</button>
+            <button id="skip-btn">Skip</button>
         </div>
     </div>
     <script src="script.js"></script>

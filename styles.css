@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     border-radius: 10px;
     text-align: center;
     max-width: 800px;
-    padding: 20px; /* Adds space around the entire timer */
+    padding: 30px; /* Adds space around the entire timer */
 }
 
 h1, h2, p {
@@ -64,10 +64,10 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px; /* Increases spacing between time units */
+    gap: 20px; /* Increases spacing between time units */
     font-size: 3rem;
     font-weight: bold;
-    padding: 20px; /* Adds space around the entire timer */
+    padding: 30px; /* Adds space around the entire timer */
 }
 
 .timer-section {
